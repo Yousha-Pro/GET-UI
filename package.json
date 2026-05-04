@@ -1,0 +1,14 @@
+{
+  "name": "get-ui-chrome-extension",
+  "version": "0.5.0",
+  "description": "Extract page styles and generate DESIGN.md or SKILL.md files.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run-tests.mjs",
+    "type-check": "tsc"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.266",
+    "typescript": "^5.4.5"
+  }
+}

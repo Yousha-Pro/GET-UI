@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GET-UI</title>
+  <link rel="stylesheet" href="./popup.css" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="brand">
+        <img src="../assets/icons/icon32.png" width="22" height="22" alt="App logo" />
+        <div>
+          <h1>GET-UI</h1>
+          <p>Generate clean UI blueprints from any page.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="mode-switch" aria-label="Output mode">
+      <button id="designModeBtn" type="button" data-mode="design" class="mode-btn is-active">
+        DESIGN.md
+      </button>
+      <button id="skillModeBtn" type="button" data-mode="skill" class="mode-btn">
+        SKILL.md
+      </button>
+      <button id="promptModeBtn" type="button" data-mode="prompt" class="mode-btn">
+        PROMPT.md
+      </button>
+    </section>
+
+
+    <p id="status" class="status" aria-live="polite" hidden></p>
+    <ul id="issues" class="issues" hidden></ul>
+
+    <section id="helpPanel" class="help-panel" hidden>
+      <div class="help-header">
+        <h2>How This Was Generated</h2>
+        <button id="closeHelpBtn" type="button" class="help-close">Close</button>
+      </div>
+      <div id="helpContent" class="help-content"></div>
+    </section>
+
+    <section class="preview-wrap">
+      <div class="preview-header">
+        <div class="preview-meta">
+          <span id="loadingState" class="loading-state" hidden>Extracting styles...</span>
+        </div>
+      </div>
+      <div class="textarea-container">
+        <textarea id="preview" readonly placeholder="Run extraction to generate markdown..."></textarea>
+      </div>
+      <div class="action-row" aria-label="Editor actions">
+          <button id="copyBtn" type="button" class="action-btn primary action-btn-main" disabled aria-label="Copy to clipboard">
+            <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <svg class="icon-success" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="action-label">Copy</span>
+          </button>
+          <div class="action-row-secondary">
+          <button id="downloadBtn" type="button" class="action-btn" disabled aria-label="Download markdown">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span class="action-label">Download</span>
+          </button>
+          <button id="refreshBtn" type="button" class="action-btn" aria-label="Refresh extraction">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span class="action-label">Refresh</span>
+          </button>
+          <button id="selectAreaBtn" type="button" class="action-btn" aria-label="Select arena to extract">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <line x1="15" y1="3" x2="15" y2="21"></line>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="3" y1="15" x2="21" y2="15"></line>
+            </svg>
+            <span class="action-label">Select Arena</span>
+          </button>
+          <button id="helpBtn" type="button" class="action-btn" aria-label="How this works">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <path d="M12 17h.01"></path>
+            </svg>
+            <span class="action-label">Explain</span>
+          </button>
+          </div>
+      </div>
+    </section>
+
+    <section class="quick-install" aria-label="Quick install providers">
+      <button id="quickInstallToggleBtn" type="button" class="quick-install-toggle" aria-expanded="false">
+        <span class="quick-install-title">Quick install</span>
+        <span class="quick-install-caret">▾</span>
+      </button>
+      <div id="quickInstallContent" class="quick-install-content" hidden>
+        <div class="quick-install-buttons">
+          <button type="button" class="quick-install-btn" data-provider="claude" data-tooltip="Select your working project folder">
+            <img src="../assets/logos/claude-color.svg" class="ai-logo" alt="" aria-hidden="true" />
+            Claude
+          </button>
+          <button type="button" class="quick-install-btn" data-provider="codex" data-tooltip="Select your working project folder">
+            <img src="../assets/logos/codex-color.svg" class="ai-logo" alt="" aria-hidden="true" />
+            Codex
+          </button>
+          <button type="button" class="quick-install-btn" data-provider="cursor" data-tooltip="Select your working project folder">
+            <img src="../assets/logos/cursor.svg" class="ai-logo" alt="" aria-hidden="true" />
+            Cursor
+          </button>
+        </div>
+        <p id="quickInstallResult" class="quick-install-result" aria-live="polite" hidden></p>
+      </div>
+    </section>
+
+    <footer class="footnote" title="Click to restart the tutorial">Ready for extraction</footer>
+
+    <div id="onboardingOverlay" class="onboarding-overlay" hidden>
+      <div id="onboardingHighlight" class="onboarding-highlight"></div>
+      <div id="onboardingTooltip" class="onboarding-tooltip">
+        <div id="onboardingContent" class="onboarding-content"></div>
+        <div class="onboarding-actions">
+          <button id="onboardingSkipBtn" class="onboarding-btn secondary">Skip</button>
+          <button id="onboardingNextBtn" class="onboarding-btn primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="./popup.js"></script>
+</body>
+
+</html>
