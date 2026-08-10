@@ -307,7 +307,7 @@ what you picked.*
 
 ```
 ┌──────────────────────────────────┬──────────────────────────────────┐
-│         ❌  WITHOUT GET-UI       │          ✅  WITH GET-UI        │
+│       ❌  WITHOUT GET-UI        <>        ✅  WITH GET-UI          │
 ├──────────────────────────────────┼──────────────────────────────────┤
 │  45+ min hunting hex values in   │  Full design system extracted    │
 │  DevTools, notes everywhere      │  in seconds. Clean. Structured.  │
