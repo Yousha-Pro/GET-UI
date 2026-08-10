@@ -307,7 +307,7 @@ what you picked.*
 
 ```
 ┌──────────────────────────────────┬──────────────────────────────────┐
-│         ❌  WITHOUT GET-UI       │          ✅  WITH GET-UI          │
+│         ❌  WITHOUT GET-UI       │          ✅  WITH GET-UI        │
 ├──────────────────────────────────┼──────────────────────────────────┤
 │  45+ min hunting hex values in   │  Full design system extracted    │
 │  DevTools, notes everywhere      │  in seconds. Clean. Structured.  │
@@ -315,7 +315,7 @@ what you picked.*
 │  Guessing spacing, eyeballing    │  Computed values. Real numbers.  │
 │  padding, estimating type scale  │  Mathematically exact.           │
 ├──────────────────────────────────┼──────────────────────────────────┤
-│  Writing AI prompts from scratch │  PROMPT.md generated for your   │
+│  Writing AI prompts from scratch │  PROMPT.md generated for your    │
 │  hoping they're specific enough  │  exact selection. Ready to run.  │
 ├──────────────────────────────────┼──────────────────────────────────┤
 │  Switching between browser,      │  Everything stays inside the     │
