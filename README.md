@@ -16,7 +16,7 @@
  ╚═════╝ ╚══════╝   ╚═╝           ╚═════╝ ╚═╝
 ```
 
-<h2>The smartest thing you'll add to Your Browser !</h2>
+<h2>The smartest thing you'll add to Your Browser.</h2>
 
 <p>See any UI. Understand it completely. Rebuild it — anywhere.</p>
 
