@@ -1,4 +1,4 @@
-# Design System Skill Blueprint(deleteme)
+# Design System Skill Blueprint
 
 Canonical source-of-truth blueprint for authoring reusable `skill.md` files for design systems across repositories.
 
